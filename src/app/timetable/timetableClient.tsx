@@ -78,8 +78,38 @@ export default function TimetableClient({ classes }: TimetableClientProps) {
   return (
     <div style={{ height: '900px' }}>
       <h1>Class Timetable</h1>
-
-        <form onSubmit={handleAddClass} style={{ marginBottom: '20px' }}>
+      <Calendar
+        localizer={localizer}
+        events={events}
+        startAccessor="start"
+        endAccessor="end"
+        style={{ height: 800 }}
+        view={view}
+        date={date}
+        onView={(newView) => setView(newView)}
+        onNavigate={(newDate) => setDate(newDate)}
+        toolbar={true}
+        views={['month', 'week', 'day', 'agenda']}
+        scrollToTime={new Date(1970, 1, 1, 8, 0, 0)} 
+        timeslots={2}  // This will divide each hour into 2 segments, making each hour taller
+        step={30}  // The number of minutes in each slot (30 minutes here)
+        components={{
+            timeSlotWrapper: ({ children }) => (
+                <div style={{ height: '32px' }}> {/* Adjust the height as needed */}
+                  {children}
+                </div>
+            ),
+            event: ({ event }) => (
+              <span>
+                <strong>{event.title}</strong>
+                <br />
+                {event.description}
+              </span>
+            ),
+          }}
+    
+      />
+            <form onSubmit={handleAddClass} style={{ marginBottom: '20px' }}>
             <div>
                 <label>Class Name:</label>
                 <input
@@ -134,37 +164,6 @@ export default function TimetableClient({ classes }: TimetableClientProps) {
                 Add Class
             </button>
         </form>
-
-      <Calendar
-        localizer={localizer}
-        events={events}
-        startAccessor="start"
-        endAccessor="end"
-        style={{ height: 800 }}
-        view={view}
-        date={date}
-        onView={(newView) => setView(newView)}
-        onNavigate={(newDate) => setDate(newDate)}
-        toolbar={true}
-        views={['month', 'week', 'day', 'agenda']}
-        scrollToTime={new Date(1970, 1, 1, 8, 0, 0)} 
-        timeslots={2}  // This will divide each hour into 2 segments, making each hour taller
-        step={30}  // The number of minutes in each slot (30 minutes here)
-        components={{
-            timeSlotWrapper: ({ children }) => (
-                <div style={{ height: '32px' }}> {/* Adjust the height as needed */}
-                  {children}
-                </div>
-            ),
-            event: ({ event }) => (
-              <span>
-                <strong>{event.title}</strong>
-                <br />
-                {event.description}
-              </span>
-            ),
-          }}
-      />
     </div>
   );
 }
