@@ -11,14 +11,32 @@ datasource db {
 }
 
 model Student {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String
+  id      Int     @id @default(autoincrement())
+  email   String  @unique
+  name    String
+  classes Class[] @relation("StudentClass") // Many-to-many relation with Class
 }
 
 model Question {
-  id Int @id @default(autoincrement())
-  weekLabel Int 
-  question String
-  answer String
+  id        Int    @id @default(autoincrement())
+  weekLabel Int
+  question  String
+  answer    String
+}
+
+model Class {
+  id        Int        @id @default(autoincrement())
+  name      String // Class name
+  time      DateTime // Class time
+  room      String // Room where the class takes place
+  locations Location[] @relation("ClassLocation") // Many-to-many relation with Location
+  students  Student[]  @relation("StudentClass") // Many-to-many relation with students
+}
+
+model Location {
+  id        Int     @id @default(autoincrement())
+  latitude  Float // Latitude of the location
+  longitude Float // Longitude of the location
+  address   String // Address or building name
+  classes   Class[] @relation("ClassLocation") // Many-to-many relationship with Class
 }
