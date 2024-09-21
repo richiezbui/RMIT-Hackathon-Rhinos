@@ -24,7 +24,7 @@ export function MainNav({
         <Link href="/leaderboard" className="text-sm font-medium text-black transition-colors hover:text-gray-700 dark:text-white dark:hover:text-gray-300">
           Leaderboard
         </Link>
-        <Link href="/quizPage" className="text-sm font-medium text-black transition-colors hover:text-gray-700 dark:text-white dark:hover:text-gray-300">
+        <Link href="/quizzes" className="text-sm font-medium text-black transition-colors hover:text-gray-700 dark:text-white dark:hover:text-gray-300">
           Quizzes
         </Link>
         <Link href="/takeAttendance" className="text-sm font-medium text-black transition-colors hover:text-gray-700 dark:text-white dark:hover:text-gray-300">
@@ -70,7 +70,7 @@ export function MainNav({
             Leaderboard
           </Link>
           <Link
-            href="/quizPage"
+            href="/quizzes"
             className="block py-2 text-sm font-medium text-black transition-colors hover:text-gray-700 dark:text-white dark:hover:text-gray-300"
             onClick={() => setIsOpen(false)}
           >
