@@ -15,7 +15,7 @@ model Student {
   email   String  @unique
   name    String
   classes Class[] @relation("StudentClass") // Many-to-many relation with Class
-  points   Int
+  points  Int
 }
 
 model Quiz {

@@ -1,12 +1,23 @@
 "use client";
 
-import { useState } from 'react';
-import buildings from './buildings'; // Import the buildings data
+import { useState, useEffect } from 'react';
 
-export default function Home() {
-  const [selectedBuilding, setSelectedBuilding] = useState(null); // State to hold the selected building
+export default function TakeAttendance() {
+  const [classes, setClasses] = useState([]);
+  const [selectedClass, setSelectedClass] = useState(null); // Selected class for attendance check
   const [status, setStatus] = useState(''); // State to hold geofencing status
   const [distance, setDistance] = useState(null); // State to show distance from geofence
+
+  useEffect(() => {
+    const fetchClasses = async () => {
+      const response = await fetch('/api/attendance', { 
+        method: 'POST',
+      });
+      const data = await response.json();
+      setClasses(data);
+    };
+    fetchClasses();
+  }, []);
 
   // Function to handle Geofencing
   const handleGeofenceCheck = () => {
@@ -15,8 +26,8 @@ export default function Home() {
       return;
     }
 
-    if (!selectedBuilding) {
-      setStatus('Please select a building first.');
+    if (!selectedClass) {
+      setStatus('Please select a class first.');
       return;
     }
 
@@ -39,8 +50,8 @@ export default function Home() {
 
   // Function to check if user is within the geofence
   const checkGeofence = (userLat, userLng) => {
-    const { latitude: geofenceCenterLat, longitude: geofenceCenterLng } = selectedBuilding;
-    const geofenceRadius = 500; // Radius in meters
+    const { latitude: geofenceCenterLat, longitude: geofenceCenterLng } = selectedClass.locations[0]; // Assuming a single location
+    const geofenceRadius = 500;
 
     const distance = getDistanceFromLatLonInMeters(
       userLat,
@@ -60,7 +71,7 @@ export default function Home() {
 
   // Function to calculate distance between two coordinates
   const getDistanceFromLatLonInMeters = (lat1, lon1, lat2, lon2) => {
-    const R = 6371000; // Radius of the Earth in meters
+    const R = 6371000; 
     const dLat = deg2rad(lat2 - lat1);
     const dLon = deg2rad(lon2 - lon1);
     const a =
@@ -81,17 +92,17 @@ export default function Home() {
   return (
     <div style={{ padding: '20px', textAlign: 'center' }}>
       <h1>Geofence Attendance Check</h1>
-      <p>Select a building and click the button below to check attendance.</p>
-      
+      <p>Select a class and click the button below to check attendance.</p>
+
       <select 
-        onChange={(e) => setSelectedBuilding(buildings[e.target.value])}
+        onChange={(e) => setSelectedClass(classes[e.target.value])}
         defaultValue=""
         style={{ padding: '10px', margin: '10px 0' }}
       >
-        <option value="" disabled>Select a Building</option>
-        {buildings.map((building, index) => (
+        <option value="" disabled>Select a Class</option>
+        {classes.map((classItem, index) => (
           <option key={index} value={index}>
-            {building.name}
+            {classItem.name} (Room: {classItem.room})
           </option>
         ))}
       </select>
@@ -104,11 +115,11 @@ export default function Home() {
       >
         Check Attendance
       </button>
-      
+
       {status && (
         <div>
           <p>Status: {status}</p>
-          {distance !== null && <p>Distance from geofence: {distance} meters</p>}
+          {distance !== null && <p>Distance from class location: {distance} meters</p>}
         </div>
       )}
     </div>
