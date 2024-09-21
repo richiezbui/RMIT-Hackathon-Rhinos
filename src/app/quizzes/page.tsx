@@ -1,11 +1,12 @@
 "use client";
 import Image from "next/image";
-import { useState } from 'react'
+import { useState } from 'react'; 
 import { UserNav } from "@/components/ui/user-nav";
 import { MainNav } from "@/components/ui/main-nav";
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ChevronDown, ChevronUp } from "lucide-react"
+
 import {
   Table,
   TableBody,
@@ -78,15 +79,13 @@ export default function Quizzes() {
                   <ul className="space-y-2">
                     {weekData.quizzes.map((quiz, index) => (
                       <li key={index}>
-                        <Link href="/quizPage/" passHref>
-                          <Button
-                            variant="outline"
-                            className="w-full justify-start"
-                            onClick={() => router.push('/quizPage')}
-                          >
-                            {quiz}
-                          </Button>
-                        </Link>
+                      <Button
+                        variant="outline"
+                        className="w-full justify-start"
+                        onClick={() => window.location.href = `/quizPage?quiz=${quiz}`} // Force a reload
+                      >
+                        {quiz}
+                      </Button>
                       </li>
                     ))}
                   </ul>
