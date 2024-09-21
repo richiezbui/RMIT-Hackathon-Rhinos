@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState } from 'react';  
 import { Calendar, momentLocalizer, Views } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
@@ -21,6 +21,8 @@ export default function TimetableClient({ classes }: TimetableClientProps) {
 
   const [view, setView] = useState<Views>('week');
 
+  const [date, setDate] = useState<Date>(new Date());
+
 
   const events = classes.map((classItem) => ({
     title: `${classItem.name} (${classItem.room})`,
@@ -38,10 +40,12 @@ export default function TimetableClient({ classes }: TimetableClientProps) {
         startAccessor="start"
         endAccessor="end"
         style={{ height: 500 }}
-        view={view}     
-        onView={(newView) => setView(newView)}  
-        toolbar={true}    
-        views={['month', 'week', 'day', 'agenda']}
+        view={view}        
+        date={date}     
+        onView={(newView) => setView(newView)} 
+        onNavigate={(newDate) => setDate(newDate)} 
+        toolbar={true}        
+        views={['month', 'week', 'day', 'agenda']}  
       />
     </div>
   );
