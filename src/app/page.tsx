@@ -58,17 +58,28 @@
 import { UserNav } from "@/components/ui/user-nav";
 import { MainNav } from "@/components/ui/main-nav";
 
-export default function Header() {
+export default function HomePage() {
   return (
-    <header>
-      <div className="border-b">
-        <div className="flex h-16 items-center px-4">
-          <MainNav className="mx-6" />
-          <div className="ml-auto flex items-center space-x-4">
-            <UserNav />
-          </div>
-        </div>
-      </div>
-    </header>
+    <div className="min-h-screen flex flex-col">
+      {/* Header Component */}
+      <header>
+            <div className="border-b">
+                <div className="flex h-16 items-center px-4">
+                    <MainNav className="mx-6" />
+                    <div className="ml-auto flex items-center space-x-4">
+                        <UserNav />
+                    </div>
+                </div>
+            </div>
+      </header>
+
+      <main className="flex flex-col items-center justify-center flex-grow text-xl bg-gradient-to-br from-blue-500 to-purple-600 p-10">
+        <h1 className="text-5xl font-bold text-white mb-6">Homepage</h1>
+        <p className="text-white text-center max-w-md">
+          Welcome to the application. Explore the features and navigate through the
+          site using the menu above.
+        </p>
+      </main>
+    </div>
   );
-};
+}
