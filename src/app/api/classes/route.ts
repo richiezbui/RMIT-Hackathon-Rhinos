@@ -11,7 +11,7 @@ export async function POST(request: Request) {
   console.log("Received request to add class:", { name, startTime, endTime, room, address });
 
   try {
-    // Step 1: Check if the location already exists
+
     const existingLocation = await prisma.location.findFirst({
       where: { address },
     });
@@ -22,10 +22,10 @@ export async function POST(request: Request) {
       locationId = existingLocation.id;
       console.log("Using existing location with id:", locationId);
     } else {
-      // Step 2: Geocode and create a new location if it doesn't exist
+
       const geocodedLocation = await geocodeAddress(address);
       if (!geocodedLocation) {
-        console.error("Geocoding failed for address:", address); // Log geocoding error
+        console.error("Geocoding failed for address:", address); 
         return NextResponse.json({ error: `Geocoding failed for address: ${address}` }, { status: 400 });
       }
 
@@ -73,14 +73,14 @@ export async function POST(request: Request) {
     console.log("Class successfully created:", newClass);
     return NextResponse.json(newClass, { status: 200 });
   } catch (error) {
-    console.error("Failed to create class:", error);  // Log detailed error message
+    console.error("Failed to create class:", error);  
     return NextResponse.json({ error: `Failed to create class: ${error.message}` }, { status: 500 });
   }
 }
 
-// Function to geocode an address using OpenCage API
+
 async function geocodeAddress(address: string) {
-  const apiKey = process.env.OPENCAGE_API_KEY; // Ensure this is set correctly in .env
+  const apiKey = process.env.OPENCAGE_API_KEY; 
   const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(address)}&key=${apiKey}`;
 
   try {
@@ -91,7 +91,7 @@ async function geocodeAddress(address: string) {
       const { lat, lng } = data.results[0].geometry;
       return { latitude: lat, longitude: lng };
     } else {
-      console.error("No results found for address:", address); // Log more specific error
+      console.error("No results found for address:", address);
       return null;
     }
   } catch (error) {
