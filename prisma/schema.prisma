@@ -15,3 +15,10 @@ model Student {
   email String  @unique
   name  String
 }
+
+model Question {
+  id Int @id @default(autoincrement())
+  weekLabel Int 
+  question String
+  answer String
+}
