@@ -78,54 +78,61 @@ export default function TimetableClient({ classes }: TimetableClientProps) {
     <div style={{ height: '700px' }}>
       <h1>Class Timetable</h1>
 
-      <form onSubmit={handleAddClass} style={{ marginBottom: '20px' }}>
-        <div>
-          <label>Class Name:</label>
-          <input
-            type="text"
-            value={className}
-            onChange={(e) => setClassName(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Start Time:</label>
-          <input
-            type="datetime-local"
-            value={startTime}
-            onChange={(e) => setStartTime(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>End Time:</label>
-          <input
-            type="datetime-local"
-            value={endTime}
-            onChange={(e) => setEndTime(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Room:</label>
-          <input
-            type="text"
-            value={room}
-            onChange={(e) => setRoom(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Address:</label>
-          <input
-            type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Add Class</button>
-      </form>
+        <form onSubmit={handleAddClass} style={{ marginBottom: '20px' }}>
+            <div>
+                <label>Class Name:</label>
+                <input
+                type="text"
+                value={className}
+                onChange={(e) => setClassName(e.target.value)}
+                required
+                className="border border-gray-300 rounded p-2"
+                />
+            </div>
+            <div>
+                <label>Start Time:</label>
+                <input
+                type="datetime-local"
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
+                required
+                className="border border-gray-300 rounded p-2"
+                />
+            </div>
+            <div>
+                <label>End Time:</label>
+                <input
+                type="datetime-local"
+                value={endTime}
+                onChange={(e) => setEndTime(e.target.value)}
+                required
+                className="border border-gray-300 rounded p-2"
+                />
+            </div>
+            <div>
+                <label>Room:</label>
+                <input
+                type="text"
+                value={room}
+                onChange={(e) => setRoom(e.target.value)}
+                required
+                className="border border-gray-300 rounded p-2"
+                />
+            </div>
+            <div>
+                <label>Location:</label>
+                <input
+                type="text"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                required
+                className="border border-gray-300 rounded p-2"
+                />
+            </div>
+            <button type="submit" className="mt-4 p-2 bg-blue-500 text-white rounded">
+                Add Class
+            </button>
+        </form>
 
       <Calendar
         localizer={localizer}
