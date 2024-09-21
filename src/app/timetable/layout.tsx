@@ -7,7 +7,7 @@ export default function TimetableLayout({
       <html lang="en">
         <body>
           <header>
-            <h1>Timetable Header</h1>
+            <h1>Timetable</h1>
           </header>
           <main>{children}</main>
         </body>

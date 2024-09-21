@@ -38,6 +38,6 @@ model Location {
   id        Int     @id @default(autoincrement())
   latitude  Float // Latitude of the location
   longitude Float // Longitude of the location
-  address   String // Address or building name
+  address   String @unique // Address or building name
   classes   Class[] @relation("ClassLocation") // Many-to-many relationship with Class
 }
