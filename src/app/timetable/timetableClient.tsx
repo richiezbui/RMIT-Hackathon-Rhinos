@@ -147,9 +147,15 @@ export default function TimetableClient({ classes }: TimetableClientProps) {
         onNavigate={(newDate) => setDate(newDate)}
         toolbar={true}
         views={['month', 'week', 'day', 'agenda']}
+        scrollToTime={new Date(1970, 1, 1, 8, 0, 0)} 
         timeslots={2}  // This will divide each hour into 2 segments, making each hour taller
         step={30}  // The number of minutes in each slot (30 minutes here)
         components={{
+            timeSlotWrapper: ({ children }) => (
+                <div style={{ height: '32px' }}> {/* Adjust the height as needed */}
+                  {children}
+                </div>
+            ),
             event: ({ event }) => (
               <span>
                 <strong>{event.title}</strong>
