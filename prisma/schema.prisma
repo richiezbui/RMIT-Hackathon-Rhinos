@@ -15,6 +15,7 @@ model Student {
   email   String  @unique
   name    String
   classes Class[] @relation("StudentClass") // Many-to-many relation with Class
+  points   Int
 }
 
 model Quiz {
@@ -34,9 +35,10 @@ model Question {
 
 model Class {
   id        Int        @id @default(autoincrement())
-  name      String // Class name
-  time      DateTime // Class time
-  room      String // Room where the class takes place
+  name      String 
+  startTime DateTime
+  endTime   DateTime
+  room      String 
   locations Location[] @relation("ClassLocation") // Many-to-many relation with Location
   students  Student[]  @relation("StudentClass") // Many-to-many relation with students
 }
@@ -45,6 +47,6 @@ model Location {
   id        Int     @id @default(autoincrement())
   latitude  Float // Latitude of the location
   longitude Float // Longitude of the location
-  address   String // Address or building name
+  address   String @unique // Address or building name
   classes   Class[] @relation("ClassLocation") // Many-to-many relationship with Class
 }
