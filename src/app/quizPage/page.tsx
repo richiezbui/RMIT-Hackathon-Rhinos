@@ -8,11 +8,12 @@ export default function QuizPage() {
 
     return(
         <div>Hellow</div>
-        //Question
-        
-        //List of options and answers
+        //Load a random question from database
+            //Question
+            
+            //List of shuffled options and answers
 
 
-        // Another random question button
+            // "Next question" (Another random question button)
     )
 }

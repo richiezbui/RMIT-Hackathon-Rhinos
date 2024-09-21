@@ -2,7 +2,7 @@
 "use client";
 import { useState } from 'react';
 import Link from 'next/link';
-import { cn } from '@/lib/utils'; // Assuming this is a utility function for conditional class names
+import { cn } from '@/lib/utils'; 
 
 export function MainNav({
   className,
@@ -18,26 +18,26 @@ export function MainNav({
       
       {/* Desktop Menu */}
       <div className="hidden md:flex items-center space-x-4 lg:space-x-6">
-        <Link href="/" className="text-sm font-medium text-white transition-colors hover:text-gray-200">
+        <Link href="/" className="text-sm font-medium text-black transition-colors hover:text-gray-700 dark:text-white dark:hover:text-gray-300">
           Home
         </Link>
-        <Link href="/leaderboard" className="text-sm font-medium text-white transition-colors hover:text-gray-200">
+        <Link href="/leaderboard" className="text-sm font-medium text-black transition-colors hover:text-gray-700 dark:text-white dark:hover:text-gray-300">
           Leaderboard
         </Link>
-        <Link href="/quizPage" className="text-sm font-medium text-white transition-colors hover:text-gray-200">
+        <Link href="/quizPage" className="text-sm font-medium text-black transition-colors hover:text-gray-700 dark:text-white dark:hover:text-gray-300">
           Quizzes
         </Link>
-        <Link href="/takeAttendance" className="text-sm font-medium text-white transition-colors hover:text-gray-200">
+        <Link href="/takeAttendance" className="text-sm font-medium text-black transition-colors hover:text-gray-700 dark:text-white dark:hover:text-gray-300">
           Attendance
         </Link>
-        <Link href="/timetable" className="text-sm font-medium text-white transition-colors hover:text-gray-200">
+        <Link href="/timetable" className="text-sm font-medium text-black transition-colors hover:text-gray-700 dark:text-white dark:hover:text-gray-300">
           Timetable
         </Link>
       </div>
 
       {/* Mobile Menu Button */}
       <button
-        className="md:hidden text-white"
+        className="md:hidden text-black dark:text-white"
         onClick={toggleMenu}
         aria-label="Toggle menu"
       >
@@ -54,38 +54,38 @@ export function MainNav({
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="absolute top-16 left-0 w-full bg-gradient-to-r from-blue-500 to-purple-600 p-4 shadow-lg md:hidden">
+        <div className="absolute top-16 left-0 w-full bg-white dark:bg-gradient-to-r dark:from-blue-500 dark:to-purple-600 p-4 shadow-lg md:hidden">
           <Link
             href="/"
-            className="block py-2 text-sm font-medium text-white transition-colors hover:text-gray-200"
+            className="block py-2 text-sm font-medium text-black transition-colors hover:text-gray-700 dark:text-white dark:hover:text-gray-300"
             onClick={() => setIsOpen(false)}
           >
             Home
           </Link>
           <Link
             href="/leaderboard"
-            className="block py-2 text-sm font-medium text-white transition-colors hover:text-gray-200"
+            className="block py-2 text-sm font-medium text-black transition-colors hover:text-gray-700 dark:text-white dark:hover:text-gray-300"
             onClick={() => setIsOpen(false)}
           >
             Leaderboard
           </Link>
           <Link
             href="/quizPage"
-            className="block py-2 text-sm font-medium text-white transition-colors hover:text-gray-200"
+            className="block py-2 text-sm font-medium text-black transition-colors hover:text-gray-700 dark:text-white dark:hover:text-gray-300"
             onClick={() => setIsOpen(false)}
           >
             Quizzes
           </Link>
           <Link
             href="/takeAttendance"
-            className="block py-2 text-sm font-medium text-white transition-colors hover:text-gray-200"
+            className="block py-2 text-sm font-medium text-black transition-colors hover:text-gray-700 dark:text-white dark:hover:text-gray-300"
             onClick={() => setIsOpen(false)}
           >
             Attendance
           </Link>
           <Link
             href="/timetable"
-            className="block py-2 text-sm font-medium text-white transition-colors hover:text-gray-200"
+            className="block py-2 text-sm font-medium text-black transition-colors hover:text-gray-700 dark:text-white dark:hover:text-gray-300"
             onClick={() => setIsOpen(false)}
           >
             Timetable
