@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma'; // Ensure Prisma is set up properly
+import { prisma } from '@/lib/prisma';
 
 export async function POST(request: Request) {
   const currentTime = new Date();
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
             ],
           },
           include: {
-            locations: true, // Include location data
+            locations: true, 
           },
         },
       },

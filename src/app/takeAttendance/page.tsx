@@ -49,25 +49,45 @@ export default function TakeAttendance() {
   };
 
   // Function to check if user is within the geofence
-  const checkGeofence = (userLat, userLng) => {
-    const { latitude: geofenceCenterLat, longitude: geofenceCenterLng } = selectedClass.locations[0]; // Assuming a single location
-    const geofenceRadius = 500;
+const checkGeofence = async (userLat, userLng) => {
+  const { latitude: geofenceCenterLat, longitude: geofenceCenterLng } = selectedClass.locations[0]; // Assuming a single location
+  const geofenceRadius = 1000;
 
-    const distance = getDistanceFromLatLonInMeters(
-      userLat,
-      userLng,
-      geofenceCenterLat,
-      geofenceCenterLng
-    );
+  const distance = getDistanceFromLatLonInMeters(
+    userLat,
+    userLng,
+    geofenceCenterLat,
+    geofenceCenterLng
+  );
 
-    setDistance(distance.toFixed(2)); // Update distance state
+  setDistance(distance.toFixed(2)); // Update distance state
 
-    if (distance <= geofenceRadius) {
-      setStatus('Inside the geofence. Attendance can be marked.');
-    } else {
-      setStatus('Outside the geofence.');
-    }
-  };
+  if (distance <= geofenceRadius) {
+    setStatus('Inside the geofence. Attendance can be marked.');
+
+
+    await increaseScore();
+  } else {
+    setStatus('Outside the geofence.');
+  }
+};
+
+const increaseScore = async () => {
+  const response = await fetch('/api/increaseScore', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ incrementBy: 1 }), 
+  });
+
+  if (response.ok) {
+    console.log("score successfully updated");
+  } else {
+    const errorMessage = await response.text();
+    console.error('Failed to update score:', errorMessage);
+  }
+};
 
   // Function to calculate distance between two coordinates
   const getDistanceFromLatLonInMeters = (lat1, lon1, lat2, lon2) => {
