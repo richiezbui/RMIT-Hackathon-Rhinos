@@ -6,9 +6,6 @@ export default function TimetableLayout({
     return (
       <html lang="en">
         <body>
-          <header>
-            <h1>Timetable</h1>
-          </header>
           <main>{children}</main>
         </body>
       </html>

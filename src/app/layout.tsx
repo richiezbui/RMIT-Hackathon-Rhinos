@@ -1,4 +1,8 @@
+import { UserNav } from '@/components/ui/user-nav';
 import './globals.css';
+import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink, NavigationMenuContent, NavigationMenuTrigger } from '@/components/ui/navigation-menu';
+import { MainNav } from '@/components/ui/main-nav';
+
 
 export const metadata = {
   title: 'My Next.js App',
@@ -16,7 +20,6 @@ export default function RootLayout({
         {/* Add any additional meta tags or links here */}
       </head>
       <body>
-        {/* Render the children components */}
         {children}
       </body>
     </html>

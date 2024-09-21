@@ -15,6 +15,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import prisma from '../../lib/prisma';
+import { MainNav } from "@/components/ui/main-nav";
+import { UserNav } from "@/components/ui/user-nav";
 
 
 
@@ -31,13 +33,22 @@ export default function Quizpage() {
     { week: 5, quizzes: ['Geography', 'Maths', 'Programming'] },
   ]
 
-    const [expandedWeek, setExpandedWeek] = useState<number | null>(null)
-  
-    const toggleWeek = (week: number) => {
-      setExpandedWeek(expandedWeek === week ? null : week)
-    }
-  
-    return (
+  const [expandedWeek, setExpandedWeek] = useState<number | null>(null)
+
+  const toggleWeek = (week: number) => {
+    setExpandedWeek(expandedWeek === week ? null : week)
+  }
+
+  return (
+    <>
+      <div className="border-b">
+        <div className="flex h-16 items-center px-4">
+          <MainNav className="mx-6" />
+          <div className="ml-auto flex items-center space-x-4">
+            <UserNav />
+          </div>
+        </div>
+      </div>
       <div className="container mx-auto p-4">
         <h1 className="text-2xl font-bold mb-6">Weekly Quizzes</h1>
         <div className="space-y-4">
@@ -45,8 +56,8 @@ export default function Quizpage() {
             <Card key={weekData.week}>
               <CardHeader>
                 <CardTitle>
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    variant="ghost"
                     className="w-full justify-between"
                     onClick={() => toggleWeek(weekData.week)}
                   >
@@ -75,5 +86,6 @@ export default function Quizpage() {
           ))}
         </div>
       </div>
-    )
-  }
+    </>
+  )
+}
