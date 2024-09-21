@@ -17,11 +17,19 @@ model Student {
   classes Class[] @relation("StudentClass") // Many-to-many relation with Class
 }
 
+model Quiz {
+  id        Int     @id @default(autoincrement())
+  title     String     @unique
+  week Int @default(1)
+  questions Question[]
+}
+
 model Question {
-  id        Int    @id @default(autoincrement())
-  weekLabel Int
+  id        Int     @id @default(autoincrement())
   question  String
   answer    String
+  Quiz      Quiz?   @relation(fields: [quizTitle], references: [title])
+  quizTitle String?
 }
 
 model Class {

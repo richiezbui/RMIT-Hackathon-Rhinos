@@ -16,15 +16,20 @@ import {
 } from "@/components/ui/table";
 import prisma from '../../lib/prisma';
 
+const questions = prisma.question.findMany();
+const quizzes = prisma.quiz.findMany();
+
 const weeksData = [
-    { week: 1, quizzes: ['Quiz 1', 'Quiz 2', 'Quiz 3'] },
-    { week: 2, quizzes: ['Quiz 1', 'Quiz 2'] },
+    { week: 1, quizzes: prisma.quiz.findMany({where:{week: {equals: 1}}})},
+    { week: 2, quizzes: ['Quiz 1', 'Quiz 2', ] },
     { week: 3, quizzes: ['Quiz 1', 'Quiz 2', 'Quiz 3', 'Quiz 4'] },
     { week: 4, quizzes: ['Quiz 1'] },
     { week: 5, quizzes: ['Quiz 1', 'Quiz 2'] },
   ]
 
 export default function Quizpage() {
+
+
     const [expandedWeek, setExpandedWeek] = useState<number | null>(null)
   
     const toggleWeek = (week: number) => {
