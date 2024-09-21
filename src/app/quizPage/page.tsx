@@ -14,6 +14,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import prisma from '../../lib/prisma';
 
 const weeksData = [
     { week: 1, quizzes: ['Quiz 1', 'Quiz 2', 'Quiz 3'] },
@@ -22,6 +23,7 @@ const weeksData = [
     { week: 4, quizzes: ['Quiz 1'] },
     { week: 5, quizzes: ['Quiz 1', 'Quiz 2'] },
   ]
+
 export default function Quizpage() {
     const [expandedWeek, setExpandedWeek] = useState<number | null>(null)
   
