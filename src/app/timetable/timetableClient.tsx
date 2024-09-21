@@ -76,7 +76,7 @@ export default function TimetableClient({ classes }: TimetableClientProps) {
   };
 
   return (
-    <div style={{ height: '700px' }}>
+    <div style={{ height: '900px' }}>
       <h1>Class Timetable</h1>
 
         <form onSubmit={handleAddClass} style={{ marginBottom: '20px' }}>
@@ -140,13 +140,15 @@ export default function TimetableClient({ classes }: TimetableClientProps) {
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: 500 }}
+        style={{ height: 800 }}
         view={view}
         date={date}
         onView={(newView) => setView(newView)}
         onNavigate={(newDate) => setDate(newDate)}
         toolbar={true}
         views={['month', 'week', 'day', 'agenda']}
+        timeslots={2}  // This will divide each hour into 2 segments, making each hour taller
+        step={30}  // The number of minutes in each slot (30 minutes here)
         components={{
             event: ({ event }) => (
               <span>
