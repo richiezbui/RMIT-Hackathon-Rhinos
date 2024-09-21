@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { Calendar, momentLocalizer, Views } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
-import './customCalendarStyles.css';  // Import the custom CSS for time slot height adjustments
 
 import { Class } from '@prisma/client';
 
@@ -31,7 +30,7 @@ export default function TimetableClient({ classes }: TimetableClientProps) {
 
   // Map class data to calendar events
   const events = allClasses.map((classItem) => ({
-    title: `${classItem.name} (Room: ${classItem.room})`,
+    title: `${classItem.name} (${classItem.room})`,
     start: new Date(classItem.startTime),
     end: new Date(classItem.endTime),
     location: classItem.locations.map((location) => location.address).join(', '),
@@ -84,52 +83,52 @@ export default function TimetableClient({ classes }: TimetableClientProps) {
             <div>
                 <label>Class Name:</label>
                 <input
-                    type="text"
-                    value={className}
-                    onChange={(e) => setClassName(e.target.value)}
-                    required
-                    className="border border-gray-300 rounded p-2"
+                type="text"
+                value={className}
+                onChange={(e) => setClassName(e.target.value)}
+                required
+                className="border border-gray-300 rounded p-2"
                 />
             </div>
             <div>
-            <label>Start Time:</label>
-            <input
+                <label>Start Time:</label>
+                <input
                 type="datetime-local"
                 value={startTime}
                 onChange={(e) => setStartTime(e.target.value)}
                 required
                 className="border border-gray-300 rounded p-2"
-            />
+                />
             </div>
             <div>
-            <label>End Time:</label>
-            <input
+                <label>End Time:</label>
+                <input
                 type="datetime-local"
                 value={endTime}
                 onChange={(e) => setEndTime(e.target.value)}
                 required
                 className="border border-gray-300 rounded p-2"
-            />
+                />
             </div>
             <div>
-            <label>Room:</label>
-            <input
+                <label>Room:</label>
+                <input
                 type="text"
                 value={room}
                 onChange={(e) => setRoom(e.target.value)}
                 required
                 className="border border-gray-300 rounded p-2"
-            />
+                />
             </div>
             <div>
-            <label>Location:</label>
-            <input
+                <label>Location:</label>
+                <input
                 type="text"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 required
                 className="border border-gray-300 rounded p-2"
-            />
+                />
             </div>
             <button type="submit" className="mt-4 p-2 bg-blue-500 text-white rounded">
                 Add Class
@@ -149,16 +148,15 @@ export default function TimetableClient({ classes }: TimetableClientProps) {
         toolbar={true}
         views={['month', 'week', 'day', 'agenda']}
         components={{
-          event: ({ event }) => (
-            <span>
-              <strong>{event.title}</strong>
-              <br />
-              {event.description}
-            </span>
-          ),
-        }}
+            event: ({ event }) => (
+              <span>
+                <strong>{event.title}</strong>
+                <br />
+                {event.description}
+              </span>
+            ),
+          }}
       />
     </div>
   );
 }
-    
