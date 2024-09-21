@@ -1,4 +1,6 @@
-# Project Name
+# Gamify Lecture Attendance
+### by Rhinos
+<br>
 
 ## Overview
 
@@ -38,20 +40,23 @@ npm install
 ```
 
 3. **Set Up Environment Variables**
+Create a .env file in the root directory and add the given environment variables.
+```
+OPENCAGE_API_KEY=4e3d2ed8ee4a4437a576855ee7624a49
+```
 
-<br>
-
-4. Run Database Migrations
+4. **Run Database Migrations**
 ```
 npx prisma migrate dev
 ```
 
-5. Start the Development Server
+5. **Start the Development Server**
 ```
 npm run dev
 ```
 
-6. Open Your Browser
+6. **Open Your Browser**
+
 Visit `http://localhost:3000` to see the application in action.
 
 
