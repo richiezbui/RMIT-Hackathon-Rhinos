@@ -1,19 +1,16 @@
-/* Increase the height of each hour slot */
+
 .rbc-time-content {
-  min-height: 1500px; /* Change this value to increase/decrease the overall height */
+  min-height: 1200px; /* height */
 }
 
-.rbc-time-slot {
-  height: 100px !important; /* Increase the height of each time slot (1 hour) */
-}
 
-/* Optionally, adjust font size and padding for better readability */
+/* font */
 .rbc-event {
-  font-size: 14px;
+  font-size: 12px;
   padding: 5px;
 }
 
-/* Adjust the event title spacing */
+/* spacing */
 .rbc-event-content {
   white-space: normal;
   word-wrap: break-word;
